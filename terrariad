@@ -7,7 +7,7 @@ attach() {
 	screen -r terraria
 }
 
-if [ "stat -c '%u' /var/run/screen/S-YOURUSERNAME/" = "$UID" ]
+if [ "$(stat -c '%u' /var/run/screen/S-YOURUSERNAME/)" = "$UID" ]
 then
 	if [ "$1" = "attach" ] ; then attach ; else inject "$*" ; fi
 fi
