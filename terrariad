@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+inject() {
+	screen -S terraria -X stuff "$*^M"
+}
+attach() {
+	screen -r terraria
+}
+
+
+if [ "`stat -c '%u' /var/run/screen/S-YOURUSERNAME/`" = "$UID" ]
+then
+	if [ "$1" = "attach" ] ; then attach ; else inject "$*" ; fi
+else
+    su - root -c "$cmd"
+fi
+

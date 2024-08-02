@@ -1,0 +1,12 @@
+[Unit]
+Description=server daemon for terraria
+
+[Service]
+Type=forking
+User=YOURUSERNAME
+KillMode=none
+ExecStart=/usr/bin/screen -dmS terraria /bin/bash -c "/usr/bin/mono --server --gc=sgen -O=all PATHTOTERRARIASERVER.EXE -config PATHTOCONFIGFILE >& PATHTOTEXTFILE"
+ExecStop=/usr/local/bin/terrariad exit
+
+[Install]
+WantedBy=multi-user.target
